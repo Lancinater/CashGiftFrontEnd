@@ -2,10 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    
+
     let navigate = useNavigate();
 
     function handleChange(event){
@@ -20,39 +20,32 @@ function Login() {
     function handleSubmit(event){
         event.preventDefault();
 
-        const base64Credentials = btoa(username + ':' + password);
-
-        fetch('http://localhost:8080/api/v1/cashGifts/login', {
-            method: 'GET',
+        fetch('http://localhost:8080/api/v1/cashGifts/register', {
+            method: 'POST',
             headers: {
-                'Authorization': 'Basic ' + base64Credentials
-            }
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify({username, password})
         })
-        .then(response => {
-          if(response.ok){
-            return response.text();
-          } else {
-            throw new Error('Failed to login');
-          }
-        })
+        .then(response => response.json())
         .then(data => {
-            console.log('Login successful:', data);
+            console.log('Register successful:', data);
             // add page redirecting here
         })
         .catch(error => {
-            console.error('Error during login:', error);
+            console.error('Error during register:', error);
         })
     }
 
-    function handleRegisterRedirect(){
-      navigate('/register')
+    function returnLogin(){
+      navigate('/login');
     }
 
   return (
     <div className="vh-100 d-flex justify-content-center align-items-center flex-column">
-      <div className="display-4 mb-4 ">
-        Login
-      </div>
+        <div className="display-4 mb-4 ">
+            Register
+        </div>
       <form className="w-25" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="username" className="form-label">Username</label>
@@ -63,13 +56,12 @@ function Login() {
           <input type="password" className="form-control" id="password" value={password} onChange={handleChange}/>
         </div>
         <div className='d-flex justify-content-center'>
-          <button type="submit" className="btn btn-primary me-3">Log In</button>
-          <button onClick={handleRegisterRedirect} className='btn btn-primary'>Register</button>
+          <button type="submit" className="btn btn-primary">Create account</button>
+          <button className='btn btn-primary ms-5' onClick={returnLogin}>Back to Login</button>
         </div>
-        
       </form>
     </div>
   );
 }
 
-export default Login;
+export default Register;

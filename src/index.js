@@ -8,17 +8,25 @@ import Header from './Header/header';
 import Menu from './Menu/menu';
 import Footer from './Footer/footer';
 import Login from './Login/login'
+import {Routes, Route, BrowserRouter} from 'react-router-dom';
+import Register from './Register/register'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  
-    <div className='d-flex flex-column vh-100'>
+    <BrowserRouter>
+      <div className='d-flex flex-column vh-100'>
       <Header />
       <div className='flex-grow-1'>
-        <Login />
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
       </div>
       <Footer />
     </div>
+    </BrowserRouter>
+    
     
 );
 
