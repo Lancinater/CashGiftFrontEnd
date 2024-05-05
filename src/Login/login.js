@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    
+
     let navigate = useNavigate();
 
     function handleChange(event){
@@ -37,6 +37,7 @@ function Login() {
         })
         .then(data => {
             console.log('Login successful:', data);
+            navigate('/menu')
             // add page redirecting here
         })
         .catch(error => {
