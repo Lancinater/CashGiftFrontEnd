@@ -12,19 +12,38 @@ export default function Menu(){
     }
 
     return (
-        <div className="vh-100 d-flex justify-content-center align-items-center flex-column">
-      <div className="display-4 mb-4 ">
-        Cash Gift Lookup
-      </div>
-      <div className='d-flex justify-content-center'>
-        <h1>
-            To be implemented
-        </h1>
-        <button onClick={handleGoback} className="btn btn-primary me-3">Go back</button>
-      </div>
-      
-      
-    </div>
+    <div className="d-flex container-fluid justify-content-center align-items-center" style={{ height: "100vh" }}>
+      <div className="text-center">
+        <div className="display-4 text-primary">
+          Cash Gift Lookup
+        </div>
+        <div className='CashGiftOptions'>
+
+          <div className="buttonRow">
+            <div className="col-6">
+              <button className="MenuButton btn btn-info">All Cash Gifts</button>
+            </div>
+            <div className="col-6">
+              <button className="MenuButton btn btn-info">Find Cash Gifts</button>
+            </div>
+          </div>
+
+          <div className="buttonRow">
+            <div className="col-6">
+              <button className="MenuButton btn btn-info">Add Cash Gift</button>
+            </div>
+            <div className="col-6">
+              <button className="MenuButton btn btn-info">Remove Cash Gift</button>
+            </div>
+          </div>
+
+        </div>
+        <div id="button">
+          <button onClick={handleGoback} className="btn btn-primary">Go back</button>
+        </div>
         
+        
+      </div>
+    </div>
     )
 }
