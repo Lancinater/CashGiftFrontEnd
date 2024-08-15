@@ -15,6 +15,18 @@ export default function Menu(){
       navigate('/allcashgifts')
     }
 
+    function findCashGift(){
+      navigate('/findcashgift')
+    }
+
+    function addCashGift(){
+      navigate('/addcashgift')
+    }
+
+    function deleteCashGift(){
+      navigate('/deletecashgift')
+    }
+
     return (
     <div className="main-page d-flex container-fluid justify-content-center align-items-center" style={{ height: "100vh" }}>
       <div className="text-center">
@@ -28,16 +40,16 @@ export default function Menu(){
               <button onClick={allCashGifts} className="MenuButton btn btn-info">All Cash Gifts</button>
             </div>
             <div className="col-6">
-              <button className="MenuButton btn btn-info">Find Cash Gifts</button>
+              <button onClick={findCashGift} className="MenuButton btn btn-info">Find Cash Gifts</button>
             </div>
           </div>
 
           <div className="buttonRow">
             <div className="col-6">
-              <button className="MenuButton btn btn-info">Add Cash Gift</button>
+              <button onClick={addCashGift} className="MenuButton btn btn-info">Add Cash Gift</button>
             </div>
             <div className="col-6">
-              <button className="MenuButton btn btn-info">Remove Cash Gift</button>
+              <button onClick={deleteCashGift} className="MenuButton btn btn-info">Remove Cash Gift</button>
             </div>
           </div>
 

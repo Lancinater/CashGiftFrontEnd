@@ -1,0 +1,19 @@
+.main-page{
+    background-color: #E9E5FF;
+}
+
+.menu{
+    margin-top: 25%;
+    margin-left: 25%;
+}
+
+.buttonRow{
+    display: flex;
+    justify-content: center;
+}
+
+.MenuButton{
+    width: 280px;
+    height: 66px;
+    margin: 50px;
+}

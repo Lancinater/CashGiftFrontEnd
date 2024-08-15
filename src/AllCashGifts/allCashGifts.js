@@ -11,7 +11,7 @@ export default function AllCashGifts(){
     }
 
     return(
-    <div className="d-flex container-fluid justify-content-center align-items-center" style={{ height: "100vh" }}>
+    <div className="main-page d-flex container-fluid justify-content-center align-items-center" style={{ height: "100vh" }}>
       <div className="text-center">
         <div className="display-4 text-primary">
           All Cash Gifts

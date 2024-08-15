@@ -9,6 +9,10 @@ import Login from './Login/login'
 import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import Register from './Register/register'
 import AllCashGifts from './AllCashGifts/allCashGifts';
+import FindCashGift from './FindCashGift/findCashGift';
+import AddCashGift from './AddCashGift/addCashGift';
+import DeleteCashGift from './DeleteCashGift/deleteCashGift';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +26,10 @@ root.render(
           <Route path="/register" element={<Register />} />
           <Route path="/menu" element={<Menu />} />
           <Route path='/allcashgifts' element={<AllCashGifts />} />
+          <Route path='/findcashgift' element={<FindCashGift />} />
+          <Route path='/addcashgift' element={<AddCashGift />} />
+          <Route path='/deletecashgift' element={<DeleteCashGift />} />
+
         </Routes>
       </div>
       <Footer />
