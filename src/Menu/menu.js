@@ -11,8 +11,12 @@ export default function Menu(){
         navigate('/login')
     }
 
+    function allCashGifts(){
+      navigate('/allcashgifts')
+    }
+
     return (
-    <div className="d-flex container-fluid justify-content-center align-items-center" style={{ height: "100vh" }}>
+    <div className="main-page d-flex container-fluid justify-content-center align-items-center" style={{ height: "100vh" }}>
       <div className="text-center">
         <div className="display-4 text-primary">
           Cash Gift Lookup
@@ -21,7 +25,7 @@ export default function Menu(){
 
           <div className="buttonRow">
             <div className="col-6">
-              <button className="MenuButton btn btn-info">All Cash Gifts</button>
+              <button onClick={allCashGifts} className="MenuButton btn btn-info">All Cash Gifts</button>
             </div>
             <div className="col-6">
               <button className="MenuButton btn btn-info">Find Cash Gifts</button>

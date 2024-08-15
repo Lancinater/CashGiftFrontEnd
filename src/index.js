@@ -8,6 +8,7 @@ import Footer from './Footer/footer';
 import Login from './Login/login'
 import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import Register from './Register/register'
+import AllCashGifts from './AllCashGifts/allCashGifts';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path='/allcashgifts' element={<AllCashGifts />} />
         </Routes>
       </div>
       <Footer />
