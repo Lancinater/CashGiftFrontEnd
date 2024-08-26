@@ -20,25 +20,32 @@ function Login() {
     function handleSubmit(event){
         event.preventDefault();
 
-        const base64Credentials = btoa(username + ':' + password);
+        // const base64Credentials = btoa(username + ':' + password);
 
-        fetch('http://localhost:8080/api/v1/cashGifts/login', {
-            method: 'GET',
+        fetch('http://localhost:8080/api/auth/login', {
+            method: 'POST',
             headers: {
-                'Authorization': 'Basic ' + base64Credentials
-            }
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({username, password})
         })
         .then(response => {
           if(response.ok){
-            return response.text();
+            return response.json();
           } else {
             throw new Error('Failed to login');
           }
         })
         .then(data => {
+          if(data.token){
+            // store jwt into localstorage
+            localStorage.setItem('token',data.token);
             console.log('Login successful:', data);
             navigate('/menu')
-            // add page redirecting here
+          }else{
+            console.error('No token found in response');
+          }
+            
         })
         .catch(error => {
             console.error('Error during login:', error);
