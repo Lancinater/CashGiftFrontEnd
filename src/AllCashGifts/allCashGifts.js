@@ -28,7 +28,6 @@ export default function AllCashGifts(){
         })
         .then(data=>{
           setCashGifts(data)
-          console.log(cashGifts)
         })
         .catch(error => {
           console.error("There was a nerror fetching the cash gifts", error);

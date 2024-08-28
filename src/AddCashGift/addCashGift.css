@@ -17,3 +17,27 @@
     height: 66px;
     margin: 50px;
 }
+
+.btn{
+    margin: 20px;
+    width: 200px;
+}
+
+.form-label{
+    margin-bottom: 30px;
+}
+
+.form-control{
+    width: 350px;
+    height: 50px;
+}
+
+form{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+input{
+    text-align: center;
+}
+
