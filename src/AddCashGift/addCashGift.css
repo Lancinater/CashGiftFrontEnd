@@ -18,21 +18,21 @@
     margin: 50px;
 }
 
-.btn{
+#add-btn{
     margin: 20px;
     width: 200px;
 }
 
-.form-label{
+#name{
     margin-bottom: 30px;
 }
 
-.form-control{
+#amount{
     width: 350px;
     height: 50px;
 }
 
-form{
+#add-form{
     margin-top: 10%;
     margin-bottom: 10%;
 }

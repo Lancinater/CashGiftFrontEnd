@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './login.css'
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -57,7 +58,7 @@ function Login() {
     }
 
   return (
-    <div className="vh-100 d-flex justify-content-center align-items-center flex-column">
+    <div id='background' className="vh-100 d-flex justify-content-center align-items-center flex-column">
       <div className="display-4 mb-4 ">
         Login
       </div>
@@ -71,8 +72,8 @@ function Login() {
           <input type="password" className="form-control" id="password" value={password} onChange={handleChange}/>
         </div>
         <div className='d-flex justify-content-center'>
-          <button type="submit" className="btn btn-primary me-3">Log In</button>
-          <button onClick={handleRegisterRedirect} className='btn btn-primary'>Register</button>
+          <button type="submit" id='submit-btn' className="btn btn-primary w-40">Log In</button>
+          <button onClick={handleRegisterRedirect} id='register-btn' className='btn btn-primary w-40'>Register</button>
         </div>
         
       </form>

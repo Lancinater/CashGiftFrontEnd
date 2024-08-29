@@ -1,0 +1,9 @@
+#submit-btn,#register-btn {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#background{
+    background-image: url('../../public/Images/Main-Background.png');
+    background-size: cover;
+}

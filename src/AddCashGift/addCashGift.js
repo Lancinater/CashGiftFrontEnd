@@ -63,17 +63,17 @@ export default function AddCashGift(){
           Add Cash Gift
         </div>
         
-        <form onSubmit={handleSubmit}>
+        <form id="add-form" onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="name" className="form-label display-6 text-primary">Name</label>
+            <label htmlFor="name" id="name" className="form-label display-6 text-primary">Name</label>
             <input type="name" className="form-control" id="name" value={name} onChange={handleChange} placeholder="Please enter the name"/>
           </div>
           <div className="mb-3">
-            <label htmlFor="amount" className="form-label display-6 text-primary">Amount</label>
+            <label htmlFor="amount" id="amount" className="form-label display-6 text-primary">Amount</label>
             <input type="amount" className="form-control" id="amount" value={amount} onChange={handleChange} placeholder="Please enter the value"/>
           </div>
           <div id="add">
-            <button type="submit" className="btn btn-primary">Add Cashgift</button>
+            <button type="submit" id="add-btn" className="btn btn-primary">Add Cashgift</button>
           </div>
 
           <div id="goback">
