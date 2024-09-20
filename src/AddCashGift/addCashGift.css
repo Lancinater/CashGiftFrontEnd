@@ -41,3 +41,7 @@ input{
     text-align: center;
 }
 
+.page-btn{
+    margin:20px;
+    width: 200px;
+}
