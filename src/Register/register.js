@@ -43,7 +43,16 @@ function Register() {
             },
             body: JSON.stringify({username, password})
         })
-        .then(response => response.json())
+        .then(response => {
+          if(!response.ok){
+            if(response.status === 409){
+              setError('Username already exists');
+              throw new Error('Username already exists');
+            }
+            throw new Error('Failed to register');
+          }
+          response.json()
+        })
         .then(data => {
             console.log('Register successful:', data);
             setSuccess('Register successful，redirecting to login page...');
