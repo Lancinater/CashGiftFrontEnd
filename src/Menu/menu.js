@@ -40,14 +40,11 @@ export default function Menu(){
               <button onClick={allCashGifts} className="MenuButton btn btn-info">All Cash Gifts</button>
             </div>
             <div className="col-6">
-              <button onClick={findCashGift} className="MenuButton btn btn-info">Find Cash Gifts</button>
+              <button onClick={addCashGift} className="MenuButton btn btn-info">Add Cash Gift</button>
             </div>
           </div>
 
           <div className="buttonRow">
-            <div className="col-6">
-              <button onClick={addCashGift} className="MenuButton btn btn-info">Add Cash Gift</button>
-            </div>
             <div className="col-6">
               <button onClick={deleteCashGift} className="MenuButton btn btn-info">Remove Cash Gift</button>
             </div>

@@ -6,6 +6,8 @@ import './login.css'
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     let navigate = useNavigate();
 
@@ -20,6 +22,15 @@ function Login() {
 
     function handleSubmit(event){
         event.preventDefault();
+
+        // clear error message
+        setError('');
+
+        // check if username and password are empty
+        if(username === '' || password === ''){
+            setError('Username and password are required');
+            return;
+        }
 
         // const base64Credentials = btoa(username + ':' + password);
 
@@ -42,7 +53,10 @@ function Login() {
             // store jwt into localstorage
             localStorage.setItem('token',data.token);
             console.log('Login successful:', data);
-            navigate('/menu')
+            setSuccess('Login successful，redirecting to menu page...');
+            setTimeout(() => {
+              navigate('/menu')
+            }, 3000);
           }else{
             console.error('No token found in response');
           }
@@ -50,6 +64,7 @@ function Login() {
         })
         .catch(error => {
             console.error('Error during login:', error);
+            setError(error.message);
         })
     }
 
@@ -71,6 +86,8 @@ function Login() {
           <label htmlFor="password" className="form-label">Password</label>
           <input type="password" className="form-control" id="password" value={password} onChange={handleChange}/>
         </div>
+        {error && <div className="alert alert-danger text-center">{error}</div>}
+        {success && <div className="alert alert-success text-center">{success}</div>}
         <div className='d-flex justify-content-center'>
           <button type="submit" id='submit-btn' className="btn btn-primary w-40">Log In</button>
           <button onClick={handleRegisterRedirect} id='register-btn' className='btn btn-primary w-40'>Register</button>
