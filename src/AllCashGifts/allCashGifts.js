@@ -13,6 +13,9 @@ export default function AllCashGifts(){
     // sorting the cashgifts
     const [sorting, setSorting] = useState([]);
 
+    // filtering the cashgifts
+    const [filtering, setFiltering] = useState('');
+
     function handleGoback(){
         navigate('/menu')
     }
@@ -64,8 +67,10 @@ export default function AllCashGifts(){
       getSortedRowModel: getSortedRowModel(),
       state: {
         sorting: sorting,
+        globalFilter: filtering,
       },
       onSortingChange: setSorting,
+      onFilteringChange: setFiltering,
     });
     
     console.log(table.getHeaderGroups());
@@ -100,46 +105,60 @@ export default function AllCashGifts(){
         <div className="display-4 text-primary" id="title">
           All Cash Gifts
         </div>
-        
-        <table className="table table-hover table-primary">
-          {table.getHeaderGroups().map(headerGroup => (
-            <thead>
-              <tr>
-                {headerGroup.headers.map(column => (
-                  <th id="headerElement" key={column.id} style={{width: `${column.column.columnDef.size}px`}} onClick={column.column.getToggleSortingHandler()}>
-                    {column.column.columnDef.header}
-                    {
-                      {asc: '↑', desc: '↓'}[column.column.getIsSorted() ?? null]
-                    }
-                  </th>
-                
-                ))}
-              </tr>
-            </thead>
-          ))}
 
-          <tbody>
-            {table.getRowModel().rows.map((row) => (
-              <tr>
-                {row.getVisibleCells().map(cell => (
-                  <td key={cell.id} style={{ width: `${cell.column.columnDef.size}px` }}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-                ))}
-              </tr>
+        <div className="table-wrapper" style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Search"
+            value={filtering}
+            onChange={(e) => setFiltering(e.target.value)}
+            style={{marginBottom: '10px',
+            width: '50%'
+            }}
+          />
+          <table className="table table-hover table-primary">
+            {table.getHeaderGroups().map(headerGroup => (
+              <thead>
+                <tr>
+                  {headerGroup.headers.map(column => (
+                    <th id="headerElement" key={column.id} style={{width: `${column.column.columnDef.size}px`}} onClick={column.column.getToggleSortingHandler()}>
+                      {column.column.columnDef.header}
+                      {
+                        {asc: '↑', desc: '↓'}[column.column.getIsSorted() ?? null]
+                      }
+                    </th>
+                  
+                  ))}
+                </tr>
+              </thead>
             ))}
-          </tbody>
-        </table>
 
-        <div className="pageButtons">
-          <button onClick={() => table.setPageIndex(0)} className="btn btn-primary page-btn">First Page</button>
-          <button onClick={() => table.previousPage()} className="btn btn-primary page-btn">Previous Page</button>
-          <button onClick={() => table.nextPage()} className="btn btn-primary page-btn">Next Page</button>
-        </div>
+            <tbody>
+              {table.getRowModel().rows.map((row) => (
+                <tr>
+                  {row.getVisibleCells().map(cell => (
+                    <td key={cell.id} style={{ width: `${cell.column.columnDef.size}px` }}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-        <div id="button">
-          <button onClick={handleGoback} className="btn btn-primary">Go back</button>
+          <div className="pageButtons">
+            <button onClick={() => table.setPageIndex(0)} className="btn btn-primary page-btn">First Page</button>
+            <button onClick={() => table.previousPage()} className="btn btn-primary page-btn">Previous Page</button>
+            <button onClick={() => table.nextPage()} className="btn btn-primary page-btn">Next Page</button>
+          </div>
+
+          <div id="button">
+            <button onClick={handleGoback} className="btn btn-primary">Go back</button>
+          </div>
         </div>
-        
-        
       </div>
     </div>
 
