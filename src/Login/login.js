@@ -26,6 +26,9 @@ function Login() {
         // clear error message
         setError('');
 
+        // clear success message
+        setSuccess('');
+
         // check if username and password are empty
         if(username === '' || password === ''){
             setError('Username and password are required');
