@@ -31,3 +31,7 @@ th, td{
 #title{
     margin: 20px;
 }
+
+#headerElement:hover{
+    cursor: pointer;
+}

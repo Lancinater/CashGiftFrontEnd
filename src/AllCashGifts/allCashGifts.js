@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import './allCashGifts.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { json, useNavigate } from 'react-router-dom';
-import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, useReactTable } from "@tanstack/react-table";
+import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 import { Box } from "@chakra-ui/react";
 import { header } from "framer-motion/client";
 
 export default function AllCashGifts(){
     let navigate = useNavigate();
     const [cashGifts, setCashGifts] = useState([]);
+
+    // sorting the cashgifts
+    const [sorting, setSorting] = useState([]);
 
     function handleGoback(){
         navigate('/menu')
@@ -58,6 +61,11 @@ export default function AllCashGifts(){
       getCoreRowModel: getCoreRowModel(),
       getFilteredRowModel: getFilteredRowModel(),
       getPaginationRowModel: getPaginationRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+      state: {
+        sorting: sorting,
+      },
+      onSortingChange: setSorting,
     });
     
     console.log(table.getHeaderGroups());
@@ -98,7 +106,13 @@ export default function AllCashGifts(){
             <thead>
               <tr>
                 {headerGroup.headers.map(column => (
-                  <th key={column.id} style={{width: `${column.column.columnDef.size}px`}}>{column.column.columnDef.header}</th>
+                  <th id="headerElement" key={column.id} style={{width: `${column.column.columnDef.size}px`}} onClick={column.column.getToggleSortingHandler()}>
+                    {column.column.columnDef.header}
+                    {
+                      {asc: '↑', desc: '↓'}[column.column.getIsSorted() ?? null]
+                    }
+                  </th>
+                
                 ))}
               </tr>
             </thead>
