@@ -12,6 +12,8 @@ export default function AddCashGift(){
 
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
 
     function handleChange(event){
@@ -26,34 +28,42 @@ export default function AddCashGift(){
     function handleSubmit(event){
       event.preventDefault();
 
-      
-        let token = localStorage.getItem("token");
-        let headerString = 'Bearer ' + token;
-        console.log(headerString);
-        console.log("start to add cashgift")
-        fetch('http://localhost:8080/api/v1/cashGifts', {
-          method: 'POST',
-          headers: {
-              'Authorisation': headerString,
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            name: name,
-            amount: amount
-          })
-        })
-          .then(response => {
-            if(!response.ok){
-              throw new Error('Network response was not ok');
-            }
-            console.log("Cashgift has been successfully added")
-            return response.json();
-          })
-          .catch(error => {
-            console.error("There was a nerror fetching the cash gifts", error);
-          })
-      
+      setError('');
 
+      setSuccess('');
+
+      if(name === '' || amount === ''){
+        setError('Name and amount are required');
+        return;
+      }
+
+      let token = localStorage.getItem("token");
+      let headerString = 'Bearer ' + token;
+      console.log(headerString);
+      console.log("start to add cashgift")
+      fetch('http://localhost:8080/api/v1/cashGifts', {
+        method: 'POST',
+        headers: {
+            'Authorisation': headerString,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          amount: amount
+        })
+      })
+        .then(response => {
+          if(!response.ok){ 
+            setError('Failed to add cashgift');
+            throw new Error('Network response was not ok');
+          }
+          setSuccess('Cashgift has been successfully added');
+          console.log("Cashgift has been successfully added")
+          return response.json();
+        })
+        .catch(error => {
+          console.error("There was a nerror fetching the cash gifts", error);
+        })
     }
 
     return(
@@ -72,6 +82,8 @@ export default function AddCashGift(){
             <label htmlFor="amount" id="amount" className="form-label display-6 text-primary">Amount</label>
             <input type="amount" className="form-control" id="amount" value={amount} onChange={handleChange} placeholder="Please enter the value"/>
           </div>
+          {error && <div className="alert alert-danger text-center">{error}</div>}
+          {success && <div className="alert alert-success text-center">{success}</div>}
           <div id="add">
             <button type="submit" id="add-btn" className="btn btn-primary">Add Cashgift</button>
           </div>

@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { json, useNavigate } from 'react-router-dom';
 import { flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
 import { Box } from "@chakra-ui/react";
-import { header } from "framer-motion/client";
+import { header, style } from "framer-motion/client";
 
 export default function AllCashGifts(){
     let navigate = useNavigate();
@@ -54,6 +54,29 @@ export default function AllCashGifts(){
         header: "Amount",
         accessorKey: "amount",
         size: 150,
+      },
+      {
+        header: "Returned",
+        accessorKey: "isReturned",
+        size: 150,
+      },
+      {
+        header: "Manage",
+        size: 150,
+        cell: ({ row }) => (
+          <Box>
+            <button className="btn btn-success" style={{
+              marginRight: '10px',
+              width: '100px'
+            }}>Returned</button>
+            <button className="btn btn-danger" style={
+              {
+                width: '100px',
+                marginLeft: '10px'
+              }
+            }>Delete</button>
+          </Box>
+        ),
       }
     ];
 
@@ -76,29 +99,6 @@ export default function AllCashGifts(){
     console.log(table.getHeaderGroups());
 
     return(
-      // This is the previous code
-    // <div className="main-page d-flex container-fluid justify-content-center align-items-center" style={{ height: "100vh" }}>
-    //   <div className="text-center">
-    //     <div className="display-4 text-primary">
-    //       All Cash Gifts
-    //     </div>
-    //     <div>
-    //       CashGifts:
-    //       {cashGifts.length > 0?(
-    //         <ul>
-    //           {cashGifts.map((gift,index)=>(
-    //             <li key={index}>Name: {gift.name} Amount: {gift.amount}</li>
-    //           ))}
-    //         </ul>
-    //       ):<p>Loading cashgifts.......</p>}
-    //     </div>
-    //     <div id="button">
-    //       <button onClick={handleGoback} className="btn btn-primary">Go back</button>
-    //     </div>
-        
-        
-    //   </div>
-    // </div>
 
     <div className="main-page d-flex container-fluid justify-content-center align-items-center" style={{ height: "100vh" }}>
       <div className="text-center">

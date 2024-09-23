@@ -44,12 +44,6 @@ export default function Menu(){
             </div>
           </div>
 
-          <div className="buttonRow">
-            <div className="col-6">
-              <button onClick={deleteCashGift} className="MenuButton btn btn-info">Remove Cash Gift</button>
-            </div>
-          </div>
-
         </div>
         <div id="button">
           <button onClick={handleGoback} className="btn btn-primary">Go back</button>
