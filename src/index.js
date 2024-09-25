@@ -18,21 +18,21 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
       <div className='d-flex flex-column vh-100'>
-      <Header />
-      <div className='flex-grow-1'>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path='/allcashgifts' element={<AllCashGifts />} />
-          <Route path='/findcashgift' element={<FindCashGift />} />
-          <Route path='/addcashgift' element={<AddCashGift />} />
-          <Route path='/deletecashgift' element={<DeleteCashGift />} />
+        <Header />
+        <div className='flex-grow-1'>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path='/allcashgifts' element={<AllCashGifts />} />
+            <Route path='/findcashgift' element={<FindCashGift />} />
+            <Route path='/addcashgift' element={<AddCashGift />} />
+            <Route path='/deletecashgift' element={<DeleteCashGift />} />
 
-        </Routes>
-      </div>
-      <Footer />
+          </Routes>
+        </div>
+        <Footer />
     </div>
     </BrowserRouter>
     
