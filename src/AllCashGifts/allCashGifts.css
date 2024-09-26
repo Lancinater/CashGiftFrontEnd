@@ -1,5 +1,6 @@
 .main-page{
     background-color: #E9E5FF;
+    overflow-y: auto;
 }
 
 .menu{
@@ -34,4 +35,9 @@ th, td{
 
 #headerElement:hover{
     cursor: pointer;
+}
+
+.table-wrapper{
+    max-width: 100%;
+    max-height: 80vh;
 }

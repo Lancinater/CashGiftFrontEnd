@@ -57,7 +57,7 @@ export default function AddCashGift(){
             setError('Failed to add cashgift');
             throw new Error('Network response was not ok');
           }
-          setSuccess('Cashgift has been successfully added');
+          setSuccess(name + " with " + amount + " has been successfully added");
           console.log("Cashgift has been successfully added")
           return response.json();
         })

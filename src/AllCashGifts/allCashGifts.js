@@ -96,7 +96,7 @@ export default function AllCashGifts(){
       onFilteringChange: setFiltering,
     });
     
-    console.log(table.getHeaderGroups());
+    console.log("total page is " + table.getPageCount());
 
     return(
 
@@ -148,15 +148,20 @@ export default function AllCashGifts(){
               ))}
             </tbody>
           </table>
+          
+          <div className="pageIndex">  
+            <p>Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}</p>
+          </div>
 
           <div className="pageButtons">
             <button onClick={() => table.setPageIndex(0)} className="btn btn-primary page-btn">First Page</button>
             <button onClick={() => table.previousPage()} className="btn btn-primary page-btn">Previous Page</button>
-            <button onClick={() => table.nextPage()} className="btn btn-primary page-btn">Next Page</button>
+            <button onClick={() => table.nextPage()} className="btn btn-primary page-btn" disabled={table.getState().pagination.pageIndex + 1 >= table.getPageCount()} >Next Page</button>
+            <button onClick={() => table.setPageIndex(table.getPageCount() - 1)} className="btn btn-primary page-btn">Last Page</button>
           </div>
 
           <div id="button">
-            <button onClick={handleGoback} className="btn btn-primary">Go back</button>
+            <button onClick={handleGoback} className="btn btn-primary" style={{width: '200px', marginBottom: '30px'}}>Go back</button>
           </div>
         </div>
       </div>
