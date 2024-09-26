@@ -20,10 +20,43 @@ export default function AllCashGifts(){
         navigate('/menu')
     }
 
+    function handleReturn(name){
+      let token = localStorage.getItem("token");
+      let headerString = 'Bearer ' + token;
+
+      fetch(`http://localhost:8080/api/v1/cashGifts/return/${name}`, {
+        method: 'PUT',
+        headers: {
+          'Authorisation': headerString
+        }
+      })
+      .then(response => {
+        if(!response.ok){
+          throw new Error('Network response was not ok');
+        }
+        console.log("Cash gift returned successfully");
+        return response.json();
+      })
+      .then(updatedGift => {
+        console.log("The updated gift is ", updatedGift);
+        let newCashGifts = cashGifts.map(gift => {
+          if(gift.name === updatedGift.name){
+            return updatedGift;
+          }
+          return gift;
+        })
+        setCashGifts(newCashGifts);
+      }
+      )
+      .catch(error => {
+        console.error("There was an error returning the cash gift", error);
+      })
+    }
+
     useEffect (()=>{
       let token = localStorage.getItem("token");
       let headerString = 'Bearer ' + token;
-      fetch('http://localhost:8080/api/v1/cashGifts', {
+      fetch(`http://localhost:8080/api/v1/cashGifts`, {
         method: 'GET',
         headers: {
             'Authorisation': headerString
@@ -65,11 +98,14 @@ export default function AllCashGifts(){
         size: 150,
         cell: ({ row }) => (
           <Box>
-            <button className="btn btn-success" style={{
+            <button className="btn btn-success" 
+            onClick={() => handleReturn(row.original.name)}
+            style={{
               marginRight: '10px',
               width: '100px'
             }}>Returned</button>
-            <button className="btn btn-danger" style={
+            <button className="btn btn-danger" 
+            style={
               {
                 width: '100px',
                 marginLeft: '10px'
