@@ -44,7 +44,7 @@ export default function AddCashGift(){
       fetch('http://localhost:8080/api/v1/cashGifts', {
         method: 'POST',
         headers: {
-            'Authorisation': headerString,
+            'Authorization': headerString,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -54,7 +54,7 @@ export default function AddCashGift(){
       })
         .then(response => {
           if(!response.ok){ 
-            setError('Failed to add cashgift');
+            setError('Cashgift already exists or network is not ok');
             throw new Error('Network response was not ok');
           }
           setSuccess(name + " with " + amount + " has been successfully added");
@@ -80,7 +80,7 @@ export default function AddCashGift(){
           </div>
           <div className="mb-3">
             <label htmlFor="amount" id="amount" className="form-label display-6 text-primary">Amount</label>
-            <input type="amount" className="form-control" id="amount" value={amount} onChange={handleChange} placeholder="Please enter the value"/>
+            <input type="number" className="form-control" id="amount" value={amount} onChange={handleChange} placeholder="Please enter the value"/>
           </div>
           {error && <div className="alert alert-danger text-center">{error}</div>}
           {success && <div className="alert alert-success text-center">{success}</div>}

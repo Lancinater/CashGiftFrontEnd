@@ -27,7 +27,7 @@ export default function AllCashGifts(){
       fetch(`http://localhost:8080/api/v1/cashGifts/return/${name}`, {
         method: 'PUT',
         headers: {
-          'Authorisation': headerString
+          'Authorization': headerString
         }
       })
       .then(response => {
@@ -53,13 +53,36 @@ export default function AllCashGifts(){
       })
     }
 
+    function handleDelete(name){
+      let token = localStorage.getItem("token");
+      let headerString = 'Bearer ' + token;
+
+      fetch(`http://localhost:8080/api/v1/cashGifts/${name}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': headerString
+        }
+      })
+      .then(response => {
+        if(!response.ok){
+          throw new Error('Network response was not ok');
+        }
+        setCashGifts(cashGifts.filter(gift => gift.name !== name));
+        console.log("Cash gift deleted successfully");
+      })
+      .catch(error => {
+        console.error("There was an error deleting the cash gift", error);
+      })
+    }
+
+
     useEffect (()=>{
       let token = localStorage.getItem("token");
       let headerString = 'Bearer ' + token;
       fetch(`http://localhost:8080/api/v1/cashGifts`, {
         method: 'GET',
         headers: {
-            'Authorisation': headerString
+            'Authorization': headerString
         },
       })
         .then(response => {
@@ -105,6 +128,7 @@ export default function AllCashGifts(){
               width: '100px'
             }}>Returned</button>
             <button className="btn btn-danger" 
+            onClick={() => handleDelete(row.original.name)}
             style={
               {
                 width: '100px',
@@ -131,8 +155,6 @@ export default function AllCashGifts(){
       onSortingChange: setSorting,
       onFilteringChange: setFiltering,
     });
-    
-    console.log("total page is " + table.getPageCount());
 
     return(
 
@@ -159,7 +181,7 @@ export default function AllCashGifts(){
           />
           <table className="table table-hover table-primary">
             {table.getHeaderGroups().map(headerGroup => (
-              <thead>
+              <thead key={headerGroup.id}>
                 <tr>
                   {headerGroup.headers.map(column => (
                     <th id="headerElement" key={column.id} style={{width: `${column.column.columnDef.size}px`}} onClick={column.column.getToggleSortingHandler()}>
@@ -176,7 +198,7 @@ export default function AllCashGifts(){
 
             <tbody>
               {table.getRowModel().rows.map((row) => (
-                <tr>
+                <tr key={row.id}>
                   {row.getVisibleCells().map(cell => (
                     <td key={cell.id} style={{ width: `${cell.column.columnDef.size}px` }}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
                   ))}
